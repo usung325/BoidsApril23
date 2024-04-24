@@ -1,5 +1,7 @@
+// wokring version April 24 2024
+
 class Boids {
-    constructor() {
+    constructor(r,g,b) {
         this.position = createVector(random(200, width-200), random(200, height-200));
         this.velocity = p5.Vector.random2D();
         this.velocity.setMag(random(1, 1.5));
@@ -9,24 +11,24 @@ class Boids {
         this.sepForce = 0.5;
         this.maxSpeed = 10;
 
-        this.colorR = random(255);
-        this.colorG = random(255)
-        this.colorB = random(255)
+        this.colorR = r;
+        this.colorG = g;
+        this.colorB = b;
     }
 
     edges() {
         let offset = 200;
         if (this.position.x > width - offset) {
-            this.velocity.mult(-10, 1);
+            this.velocity.sub(1, 0);
         }
         else if (this.position.x < 0 + offset){
-            this.velocity.mult(-10, 1);
+            this.velocity.add(1, 0);
         }
         else if(this.position.y > height - offset) {
-            this.velocity.mult(1, -10);
+            this.velocity.sub(0, 1);
         }
         else if(this.position.y < 0 + offset) {
-            this.velocity.mult(1, -10);
+            this.velocity.add(0, 1);
         }
     }
 
@@ -86,11 +88,20 @@ class Boids {
         let avg = createVector();
         let total = 0;
 
+
+        // let avgColR = [];
+        // let avgColG = [];
+        // let avgColB = [];
+
         for (let other of boidArr){ //this is where you check ALL of list. good place to implement quadtree
             let d  = dist(this.position.x, this.position.y, other.position.x, other.position.y);
             if (other != self && d < perceptionRadius ){
                 avg.add(other.position); // changed other.velocity to other.position
                 total += 1;
+
+                // avgColR.push(this.colorR);
+                // avgColG.push(this.colorG);
+                // avgColB.push(this.colorB);
             }
         }
 

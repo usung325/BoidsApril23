@@ -1,16 +1,24 @@
+//works with boids6.js
+
 const flock = [];
 
 
 let alignSlider, cohesionSlider, separationSlider;
 
 function setup() {
-    createCanvas(window.innerWidth, window.innerHeight);
+    createCanvas(window.innerWidth, window.innerHeight - 100);
     alignSlider = createSlider(0, 5, 1, 0.1);
     cohesionSlider = createSlider(0, 5, 1, 0.1);
     separationSlider = createSlider(0, 5, 1, 0.1);
 
-    for (let i = 0; i < 250; i++){
-        flock.push(new Boids());
+    for (let i = 0; i < 50; i++){
+        flock.push(new Boids(255,50,60));
+    }
+    for (let i = 0; i < 50; i++){
+        flock.push(new Boids(0,255,255));
+    }
+    for (let i = 0; i < 50; i++){
+        flock.push(new Boids(255,255,255));
     }
 }
 
@@ -28,6 +36,7 @@ function draw(){
 
         // console.log('posX: ' + boid.position);
         // console.log('velX: ' + boid.velocity);
+        console.log(frameRate());
         
     }
 }
