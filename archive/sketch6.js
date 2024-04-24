@@ -1,3 +1,5 @@
+//working with boids7.js
+
 const flock = [];
 
 let alignSlider, cohesionSlider, separationSlider;
@@ -8,13 +10,13 @@ function setup() {
     cohesionSlider = createSlider(0, 5, 1, 0.1);
     separationSlider = createSlider(0, 5, 1, 0.1);
 
-    for (let i = 0; i < 50; i++){
+    for (let i = 0; i < 100; i++){
         flock.push(new Boids(255,50,60));
     }
-    for (let i = 0; i < 50; i++){
+    for (let i = 0; i < 100; i++){
         flock.push(new Boids(0,255,255));
     }
-    for (let i = 0; i < 50; i++){
+    for (let i = 0; i < 100; i++){
         flock.push(new Boids(255,255,255));
     }
 }

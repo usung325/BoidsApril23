@@ -1,3 +1,4 @@
+// implemented iterate boidArr only once. Working file
 
 class Boids {
     constructor(r, g, b) {
