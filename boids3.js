@@ -1,6 +1,6 @@
 class Boids {
     constructor() {
-        this.position = createVector(random(30, width-30), random(30, height-30));
+        this.position = createVector(random(200, width-200), random(200, height-200));
         this.velocity = p5.Vector.random2D();
         this.velocity.setMag(random(1, 1.5));
         this.acceleration = createVector();
@@ -8,10 +8,14 @@ class Boids {
         this.maxForce = 0.2;
         this.sepForce = 0.5;
         this.maxSpeed = 10;
+
+        this.colorR = random(255);
+        this.colorG = random(255)
+        this.colorB = random(255)
     }
 
     edges() {
-        let offset = 20;
+        let offset = 200;
         if (this.position.x > width - offset) {
             this.velocity.mult(-10, 1);
         }
@@ -28,7 +32,7 @@ class Boids {
 
     show() {
         strokeWeight(10);
-        stroke(255,0,0);
+        stroke(this.colorR,this.colorG,this.colorB);
         point(this.position);
     }
 
