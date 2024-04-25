@@ -21,13 +21,13 @@ function setup() {
     for(let i = 0; i < 2000; i++){
         let randId = int(random(1,4));
         if (randId == 2){
-            flock.push(new Boids(random(255),random(255),60, randId));
+            flock.push(new Boids(random(0, 200),random(60,255),0, randId));
         }
         else if (randId == 3){
-            flock.push(new Boids(60,random(255),random(255), randId));
+            flock.push(new Boids(255,random(100,255),random(60,255), randId));
         }
         else{
-            flock.push(new Boids(255,255,255, randId));
+            flock.push(new Boids(random(60,255), 60,random(255), randId));
         }
     }
 }
@@ -54,10 +54,12 @@ function draw() {
 
             
 
-            qTree.show();
+            // qTree.show();
             
-            textSize(50);
+            textSize(20);
+            noStroke();
             fill('white');
-            text(int(frameRate()), width - 500, height-50);  
+            textAlign(CENTER);
+            text(int(frameRate()), width/2, height-50);  
     
 }
