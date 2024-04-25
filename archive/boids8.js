@@ -1,3 +1,4 @@
+//working boids before implementing Quadtree
 
 class Boids {
     constructor(r, g, b, id) {
@@ -69,7 +70,15 @@ class Boids {
 
                 avgAlignment.add(other.velocity);
 
+                //////////////////////////////
+
+                avgCohesion.add(other.position);
+
+                    sameIdTotal += 1;
+
                 }
+
+
                 //////////////////////////////
 
                 let diff = p5.Vector.sub(this.position, other.position)
@@ -80,16 +89,6 @@ class Boids {
                 //////////////////////////////
 
                 total += 1;
-
-                //////////////////////////////
-
-                if (other.id == this.id) {
-
-                    avgCohesion.add(other.position);
-
-                    sameIdTotal += 1;
-
-                }
 
             }
         }
