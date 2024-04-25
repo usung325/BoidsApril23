@@ -18,7 +18,7 @@ function setup() {
     separationSlider = createSlider(0, 5, 1, 0.1);
 
     
-    for(let i = 0; i < 100; i++){
+    for(let i = 0; i < 1000; i++){
         flock.push(new Boids(random(255),random(255),random(255), int(random(1,3))));
     }
 }
