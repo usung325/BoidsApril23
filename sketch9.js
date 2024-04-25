@@ -18,8 +18,17 @@ function setup() {
     separationSlider = createSlider(0, 5, 1, 0.1);
 
     
-    for(let i = 0; i < 1000; i++){
-        flock.push(new Boids(random(255),random(255),random(255), int(random(1,3))));
+    for(let i = 0; i < 2000; i++){
+        let randId = int(random(1,4));
+        if (randId == 2){
+            flock.push(new Boids(random(255),random(255),60, randId));
+        }
+        else if (randId == 3){
+            flock.push(new Boids(60,random(255),random(255), randId));
+        }
+        else{
+            flock.push(new Boids(255,255,255, randId));
+        }
     }
 }
 
@@ -32,10 +41,10 @@ function draw() {
             qTree.insert(new Point(boid.position.x, boid.position.y, boid));
 
             let radiusOfBoid = new Circle(boid.position.x, boid.position.y, checkRange);
-                radiusOfBoid.show();
+                // radiusOfBoid.show();
                 let boidsInRange = (qTree.query(radiusOfBoid)); // query keeps returning empty list. Can't find boids intersecting for some reason
 
-                // console.log(boidsInRange);
+
                 boid.flock(boidsInRange);
                 boid.update();
                 boid.edges();
@@ -46,10 +55,9 @@ function draw() {
             
 
             qTree.show();
-
-            // console.log('posX: ' + boid.position);
-            // console.log('velX: ' + boid.velocity);
-    
-            console.log(frameRate());  
+            
+            textSize(50);
+            fill('white');
+            text(int(frameRate()), width - 500, height-50);  
     
 }
