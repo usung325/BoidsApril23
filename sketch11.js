@@ -1,4 +1,5 @@
-// workes with boid8.js
+//implementing 1->3
+//works with boids12js
 
 const flock = [];
 let qTree;
@@ -6,34 +7,59 @@ let isPaused = false;
 
 let alignSlider, cohesionSlider, separationSlider;
 
-let capacity = 2;
-let checkRange = 50;
+let capacity = 100;
+let checkRange = 20;
+let boidNum = 3000;
 
 
 function setup() {
     createCanvas(window.innerWidth, window.innerHeight - 100);
     
-    alignSlider = createSlider(0, 5, 1, 0.1);
+    alignSlider = createSlider(0, 5, 5, 0.1);
     cohesionSlider = createSlider(0, 5, 1, 0.1);
     separationSlider = createSlider(0, 5, 1, 0.1);
 
+    /////// mic ///////
+
+    mic = new p5.AudioIn();
+
+    mic.start();
+
+    ///////////////////
+
     
-    for(let i = 0; i < 2000; i++){
+    for(let i = 0; i < boidNum; i++){
         let randId = int(random(1,4));
         if (randId == 2){
-            flock.push(new Boids(random(0, 200),random(60,255),0, randId));
+            flock.push(new Boids(random(150,255), random(116, 150), 187, randId));
         }
         else if (randId == 3){
-            flock.push(new Boids(255,random(100,255),random(60,255), randId));
+            flock.push(new Boids(20,random(115, 180), random(127,180), randId));
         }
-        else{
-            flock.push(new Boids(random(60,255), 60,random(255), randId));
-        }
+        // else{
+        //     flock.push(new Boids(255, 255, 255, randId));
+        // }
     }
 }
 
+function mouseClicked() {
+    for(let i = 0; i < 20; i++){
+        flock.push(new Boids(random(180,220), random(180,220), random(180,220), 5));
+    }
+}
+
+
 function draw() {
-    background(0);
+
+    /////// mic ///////
+
+    let vol = mic.getLevel();
+    let volume = map(vol, 0, 1, 0, 5);
+
+    /////// mic ///////
+
+
+    background(0,115,127,99);
     qTree = new QuadTree(new Rectangle(width/2, height/2, width, height), capacity);
     
     for(let boid of flock){
@@ -45,7 +71,7 @@ function draw() {
                 let boidsInRange = (qTree.query(radiusOfBoid)); // query keeps returning empty list. Can't find boids intersecting for some reason
 
 
-                boid.flock(boidsInRange);
+                boid.flock(boidsInRange, volume);
                 boid.update();
                 boid.edges();
                 boid.show();
@@ -60,6 +86,6 @@ function draw() {
             noStroke();
             fill('white');
             textAlign(CENTER);
-            text(int(frameRate()), width/2, height-50);  
+            text('1 -> 3', width/2, height-50);  
     
 }

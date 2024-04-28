@@ -96,7 +96,7 @@ class Point {
     show(){
       noFill();
       strokeWeight(1);
-      stroke(0,255,0,80);
+      stroke(255,255,255,40);
       ellipse(this.x, this.y, this.r);
 
     }
