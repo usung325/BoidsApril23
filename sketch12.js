@@ -1,4 +1,4 @@
-//implementing 1->3
+//for twitter
 //works with boids12js
 
 const flock = [];
@@ -9,7 +9,7 @@ let alignSlider, cohesionSlider, separationSlider;
 
 let capacity = 100;
 let checkRange = 20;
-let boidNum = 2000;
+let boidNum = 1800;
 
 
 function setup() {
@@ -32,14 +32,14 @@ function setup() {
     for(let i = 0; i < boidNum; i++){
         let randId = int(random(1,4));
         if (randId == 2){
-            flock.push(new Boids(random(150,255), random(116, 150), 187, randId));
+            flock.push(new Boids(random(150,255), random(116, 150), 255, randId));
         }
         else if (randId == 3){
-            flock.push(new Boids(20,random(115, 180), random(127,180), randId));
+            flock.push(new Boids(255,random(115, 180), random(127,180), randId));
         }
-        // else{
-        //     flock.push(new Boids(255, 255, 255, randId));
-        // }
+        else{
+            flock.push(new Boids(random(200,255), random(200,255), random(200,255), randId));
+        }
     }
 }
 
@@ -61,7 +61,7 @@ function draw() {
     /////// mic ///////
 
 
-    background(0,115,127,99);
+    background(0,0,0,99);
     qTree = new QuadTree(new Rectangle(width/2, height/2, width, height), capacity);
     
     for(let boid of flock){
@@ -84,10 +84,10 @@ function draw() {
 
             // qTree.show();
             
-            textSize(20);
-            noStroke();
-            fill('white');
-            textAlign(CENTER);
-            text('Welcome to 1 -> 3!', width/2, height-50);  
+            // textSize(20);
+            // noStroke();
+            // fill('white');
+            // textAlign(CENTER);
+            // text('Welcome to 1 -> 3!', width/2, height-50);  
     
 }

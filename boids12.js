@@ -150,7 +150,7 @@ class Boids {
         let cohesion = avgList[2];
 
         // console.log(volume);
-        alignment.mult(alignSlider.value() - (volume * 200) );
+        alignment.mult(alignSlider.value() - (volume * 60) );
         separation.mult(separationSlider.value());
         cohesion.mult(cohesionSlider.value());
 
