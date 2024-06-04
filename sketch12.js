@@ -13,7 +13,7 @@ let boidNum = 1800;
 
 
 function setup() {
-    createCanvas(800, 800);
+    createCanvas(800, window.innerHeight);
     
     alignSlider = createSlider(0, 5, 5, 0.1);
     cohesionSlider = createSlider(0, 5, 1, 0.1);

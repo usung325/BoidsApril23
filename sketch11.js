@@ -9,11 +9,13 @@ let alignSlider, cohesionSlider, separationSlider;
 
 let capacity = 100;
 let checkRange = 20;
-let boidNum = 2000;
+let boidNum = 3000;
+
+let xStart = 0;
 
 
 function setup() {
-    createCanvas(800, 800);
+    createCanvas(800, window.innerHeight);
     
     alignSlider = createSlider(0, 5, 5, 0.1);
     cohesionSlider = createSlider(0, 5, 1, 0.1);
@@ -86,8 +88,18 @@ function draw() {
             
             textSize(20);
             noStroke();
-            fill('white');
             textAlign(CENTER);
-            text('Welcome to 1 -> 3!', width/2, height-50);  
-    
-}
+            // text('Welcome to 1 -> 3!', width/2, height-50);  
+
+
+    ///// text ///////
+
+    for (let x = xStart; x < width; x += 170) { //use a for loop to draw the line of text multiple times down the vertical axis
+        
+        fill(200,150,187); //create a gradient by associating the fill color with the y location of the text
+        text('Welcome to 1->3!', -x + 700, 100); //display text
+      }
+      xStart--; //move the starting point of the loop up to create the scrolling animation, yStart-- is the same as yStart = yStart -1 or yStart-=1
+
+      text('Feel free to take a seat and try some of our board games :)', width/2, height - 100)
+    }
